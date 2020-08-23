@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey, TableColumn} from "typeorm";
 import { query } from "express";
 
 export default class CreateAppointments1598189746847 implements MigrationInterface {
@@ -16,9 +16,9 @@ export default class CreateAppointments1598189746847 implements MigrationInterfa
                         default: 'uuid_generate_v4()'
                     },
                     {
-                        name: 'provider',
-                        type: 'varchar',
-                        isNullable: false
+                        name: 'provider_id',
+                        type: 'uuid',
+                        isNullable: true
                     },
                     {
                         name: 'date',
@@ -28,10 +28,12 @@ export default class CreateAppointments1598189746847 implements MigrationInterfa
                 ]
             })
         );
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("appointments");
+
     }
 
 }
