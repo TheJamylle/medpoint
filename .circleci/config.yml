@@ -8,6 +8,14 @@ jobs:
       name: node/default
     steps:
       - run: echo "ACHO QUE FUNFOU"
+  another:
+    executor:
+      name: node/default
+    steps:
+      - run: 
+          command: | 
+            echo "Trying somethig new"
+            mkdir /aha
 
 workflows:
   node-tests:
@@ -15,3 +23,7 @@ workflows:
       - node/test
 
       - some
+
+      - another:
+          requires:
+            - some
