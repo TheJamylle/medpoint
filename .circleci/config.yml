@@ -1,17 +1,17 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@1.1.6
 
 jobs:
   some:
     executor:
       name: node/default
-      steps:
-        - checkout
-        - node/with-cache:
-            steps:
-              - run: npm install
-              - run: npm run build
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm run build
   another:
     executor:
       name: node/default
@@ -22,10 +22,9 @@ jobs:
             mkdir aha
 
 workflows:
-  node-tests:
+  version: 2.1
+  some-another:
     jobs:
-      - node/test
-
       - some
 
       - another:
