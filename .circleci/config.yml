@@ -6,8 +6,12 @@ jobs:
   some:
     executor:
       name: node/default
-    steps:
-      - run: echo "ACHO QUE FUNFOU"
+      steps:
+        - checkout
+        - node/with-cache:
+            steps:
+              - run: npm install
+              - run: npm run build
   another:
     executor:
       name: node/default
