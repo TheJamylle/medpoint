@@ -15,7 +15,7 @@ jobs:
       - run: 
           command: | 
             echo "Trying somethig new"
-            mkdir /aha
+            mkdir aha
 
 workflows:
   node-tests:
